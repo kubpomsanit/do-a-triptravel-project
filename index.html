@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ฟอร์มวางแผนการท่องเที่ยวไทย</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: #f5f7fb; }
+    .app { max-width: 680px; margin: 0 auto; padding: 2rem 1rem; font-family: system-ui, -apple-system, sans-serif; color: #333; }
+    .hero { text-align: center; padding: 1.5rem 0 1.25rem; border-bottom: 0.5px solid #e2e8f0; margin-bottom: 1.25rem; }
+    .hero h1 { font-size: 24px; font-weight: 600; margin-bottom: 0.4rem; color: #1a202c; }
+    .hero p { font-size: 14px; color: #4a5568; }
+    .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+    .card-title { font-size: 14px; font-weight: 600; color: #4a5568; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 8px; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .fg { display: flex; flex-direction: column; gap: 6px; }
+    .fg label { font-size: 13px; font-weight: 500; color: #4a5568; }
+    .fg select, .fg input { font-size: 14px; padding: 8px 12px; border-radius: 8px; border: 1px solid #cbd5e1; background: #f8fafc; color: #1e293b; width: 100%; outline: none; }
+    .fg select:focus, .fg input:focus { border-color: #1D9E75; background: #fff; }
+    .gen-btn { width: 100%; padding: 12px; font-size: 15px; font-weight: 600; border-radius: 8px; background: #1D9E75; color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 0.75rem; transition: background 0.2s; }
+    .gen-btn:hover { background: #0F6E56; }
+    .hint { background: #f8fafc; border-radius: 8px; padding: 0.75rem 1rem; font-size: 13px; color: #64748b; text-align: center; line-height: 1.6; border: 1px solid #e2e8f0; }
+  </style>
+</head>
+<body>
+
+<div class="app">
+  <div class="hero">
+    <div style="font-size:40px;margin-bottom:0.5rem">🇹🇭</div>
+    <h1>วางแผนเที่ยวไทยอัจฉริยะ</h1>
+    <p>ระบบรวบรวมข้อมูลและจัดทริป 77 จังหวัดทั่วประเทศไทยด้วย Gemini</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-map-pin" aria-hidden="true" style="color:#1D9E75; font-size:18px;"></i> ข้อมูลการเดินทาง</div>
+    
+    <div class="row2">
+      <div class="fg"><label>ต้นทาง (มีครบ 77 จังหวัด)</label>
+        <select id="origin">
+          <!-- ภาคกลาง -->
+          <option selected>กรุงเทพมหานคร</option><option>นนทบุรี</option><option>ปทุมธานี</option><option>สมุทรปราการ</option><option>สมุทรสาคร</option><option>สมุทรสงคราม</option><option>นครปฐม</option><option>อยุธยา</option><option>อ่างทอง</option><option>พระนครศรีอยุธยา</option><option>ลพบุรี</option><option>สิงห์บุรี</option><option>ชัยนาท</option><option>สระบุรี</option><option>นครสวรรค์</option><option>อุทัยธานี</option><option>กำแพงเพชร</option><option>ตาก</option><option>สุโขทัย</option><option>พิษณุโลก</option><option>พิจิตร</option><option>เพชรบูรณ์</option><option>สุพรรณบุรี</option>
+          <!-- ภาคเหนือ -->
+          <option>เชียงใหม่</option><option>เชียงราย</option><option>น่าน</option><option>แม่ฮ่องสอน</option><option>พะเยา</option><option>แพร่</option><option>ลำปาง</option><option>ลำพูน</option><option>อุตรดิตถ์</option>
+          <!-- ภาคตะวันเฉียงเหนือ -->
+          <option>ขอนแก่น</option><option>นครราชสีมา</option><option>บุรีรัมย์</option><option>ชัยภูมิ</option><option>มหาสารคาม</option><option>ร้อยเอ็ด</option><option>กาฬสินธุ์</option><option>สกลนคร</option><option>นครพนม</option><option>มุกดาหาร</option><option>อุบลราชธานี</option><option>ยโสธร</option><option>อำนาจเจริญ</option><option>ศรีสะเกษ</option><option>สุรินทร์</option><option>อุดรธานี</option><option>เลย</option><option>หนองคาย</option><option>หนองบัวลำภู</option><option>บึงกาฬ</option>
+          <!-- ภาคตะวันออก -->
+          <option>ชลบุรี</option><option>ระยอง</option><option>จันทบุรี</option><option>ตราด</option><option>ฉะเชิงเทรา</option><option>ปราจีนบุรี</option><option>นครนายก</option><option>สระแก้ว</option>
+          <!-- ภาคตะวันตก -->
+          <option>กาญจนบุรี</option><option>ราชบุรี</option><option>เพชรบุรี</option><option>ประจวบคีรีขันธ์</option>
+          <!-- ภาคใต้ -->
+          <option>ภูเก็ต</option><option>กระบี่</option><option>พังงา</option><option>สุราษฎร์ธานี</option><option>นครศรีธรรมราช</option><option>สงขลา</option><option>ชุมพร</option><option>ระนอง</option><option>ตรัง</option><option>พัทลุง</option><option>สตูล</option><option>ปัตตานี</option><option>ยะลา</option><option>นราธิวาส</option>
+        </select>
+      </div>
+      
+      <div class="fg"><label>ปลายทาง (มีครบ 77 จังหวัด)</label>
+        <select id="dest">
+          <!-- ภาคเหนือ -->
+          <option selected>เชียงใหม่</option><option>เชียงราย</option><option>น่าน</option><option>แม่ฮ่องสอน</option><option>พะเยา</option><option>แพร่</option><option>ลำปาง</option><option>ลำพูน</option><option>อุตรดิตถ์</option>
+          <!-- ภาคตะวันออกเฉียงเหนือ -->
+          <option>ขอนแก่น</option><option>นครราชสีมา</option><option>บุรีรัมย์</option><option>ชัยภูมิ</option><option>มหาสารคาม</option><option>ร้อยเอ็ด</option><option>กาฬสินธุ์</option><option>สกลนคร</option><option>นครพนม</option><option>มุกดาหาร</option><option>อุบลราชธานี</option><option>ยโสธร</option><option>อำนาจเจริญ</option><option>ศรีสะเกษ</option><option>สุรินทร์</option><option>อุดรธานี</option><option>เลย</option><option>หนองคาย</option><option>หนองบัวลำภู</option><option>บึงกาฬ</option>
+          <!-- ภาคกลาง -->
+          <option>กรุงเทพมหานคร</option><option>อยุธยา</option><option>สุโขทัย</option><option>พิษณุโลก</option><option>สุพรรณบุรี</option><option>นครปฐม</option><option>นนทบุรี</option><option>ปทุมธานี</option><option>สมุทรปราการ</option><option>สมุทรสาคร</option><option>สมุทรสงคราม</option><option>อ่างทอง</option><option>พระนครศรีอยุธยา</option><option>ลพบุรี</option><option>สิงห์บุรี</option><option>ชัยนาท</option><option>สระบุรี</option><option>นครสวรรค์</option><option>อุทัยธานี</option><option>กำแพงเพชร</option><option>ตาก</option><option>พิจิตร</option><option>เพชรบูรณ์</option>
+          <!-- ภาคตะวันออก -->
+          <option>ชลบุรี</option><option>ระยอง</option><option>จันทบุรี</option><option>ตราด</option><option>ฉะเชิงเทรา</option><option>ปราจีนบุรี</option><option>นครนายก</option><option>สระแก้ว</option>
+          <!-- ภาคตะวันตก -->
+          <option>กาญจนบุรี</option><option>ราชบุรี</option><option>เพชรบุรี</option><option>ประจวบคีรีขันธ์</option>
+          <!-- ภาคใต้ -->
+          <option>ภูเก็ต</option><option>กระบี่</option><option>พังงา</option><option>สุราษฎร์ธานี</option><option>นครศรีธรรมราช</option><option>สงขลา</option><option>ชุมพร</option><option>ระนอง</option><option>ตรัง</option><option>พัทลุง</option><option>สตูล</option><option>ปัตตานี</option><option>ยะลา</option><option>นราธิวาส</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row3">
+      <div class="fg"><label>วันเดินทาง</label><input type="date" id="tdate"/></div>
+      <div class="fg"><label>จำนวนวัน</label>
+        <select id="days">
+          <option value="1">1 วัน</option>
+          <option value="2" selected>2 วัน 1 คืน</option>
+          <option value="3">3 วัน 2 คืน</option>
+          <option value="4">4 วัน 3 คืน</option>
+          <option value="5">5 วัน 4 คืน</option>
+        </select>
+      </div>
+      <div class="fg"><label>งบ/คน/วัน</label>
+        <select id="budget"><option value="ประหยัด ต่ำกว่า 2000 บาท">ประหยัด &lt;2K</option><option value="ปานกลาง 2000-5000 บาท" selected>ปานกลาง 2-5K</option><option value="สูง 5000-10000 บาท">สูง 5-10K</option><option value="หรูหรา มากกว่า 10000 บาท">หรูหรา 10K+</option></select>
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="fg"><label>พาหนะ</label>
+        <select id="transport"><option>รถยนต์ส่วนตัว</option><option>รถทัวร์/รถบัส</option><option>เครื่องบิน</option><option>รถไฟ</option></select>
+      </div>
+      <div class="fg"><label>จำนวนคน</label>
+        <select id="travelers"><option value="1 คน">1 คน</option><option value="2 คน" selected>2 คน</option><option value="3-4 คน">3-4 คน</option><option value="5-8 คน">5-8 คน</option></select>
+      </div>
+    </div>
+
+    <div class="fg" style="margin-bottom:0.75rem">
+      <label>ความสนใจพิเศษ หรือสถานที่ที่อยากไปเป็นพิเศษ</label>
+      <input type="text" id="interests" placeholder="เช่น คาเฟ่, อยากไปหมู่บ้านรักไทย, เน้นถ่ายรูปธรรมชาติ..."/>
+    </div>
+
+    <button class="gen-btn" onclick="sendPlan()">
+      <i class="ti ti-sparkles" aria-hidden="true"></i> สร้างแผนการเที่ยวและเปิดหน้าแชท Gemini ↗
+    </button>
+  </div>
+
+  <div class="hint">
+    <i class="ti ti-info-circle" aria-hidden="true" style="color:#1D9E75;"></i>
+    เมื่อกดปุ่ม ระบบจะรวบรวมข้อมูลต้นทาง-ปลายทางและเปิด Gemini ขึ้นมา ให้กด "วาง (Ctrl+V)" ในช่องแชทได้ทันทีครับ
+  </div>
+</div>
+
+<script>
+(function(){
+  const d = new Date();
+  document.getElementById('tdate').value = d.toISOString().split('T')[0];
+})();
+
+const thDays = ['อาทิตย์','จันทร์','อังคาร','พุธ','พฤหัสบดี','ศุกร์','เสาร์'];
+const thMonths = ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
+
+function thDate(str) {
+  const d = new Date(str);
+  return `${thDays[d.getDay()]}ที่ ${d.getDate()} ${thMonths[d.getMonth()]} ${d.getFullYear()+543}`;
+}
+
+function addDays(str, n) {
+  const d = new Date(str);
+  d.setDate(d.getDate() + n);
+  return d.toISOString().split('T')[0];
+}
+
+function sendPlan() {
+  const origin = document.getElementById('origin').value;
+  const dest = document.getElementById('dest').value;
+  const tdate = document.getElementById('tdate').value;
+  const days = parseInt(document.getElementById('days').value);
+  const budget = document.getElementById('budget').value;
+  const transport = document.getElementById('transport').value;
+  const travelers = document.getElementById('travelers').value;
+  const interests = document.getElementById('interests').value || 'ท่องเที่ยวทั่วไปทุกสไตล์';
+
+  const dateGo = thDate(tdate);
+  const dateReturn = days > 1 ? thDate(addDays(tdate, days-1)) : dateGo;
+
+  const msg = `คุณคือ AI ผู้เชี่ยวชาญด้านข้อมูลการท่องเที่ยวไทย 77 จังหวัด โปรดวางแผนทริปตามข้อมูลนี้:\n` +
+              `- ต้นทาง: จังหวัด ${origin}\n` +
+              `- ปลายทาง: จังหวัด ${dest}\n` +
+              `- วันเดินทางไป: ${dateGo}\n` +
+              `- วันเดินทางกลับ: ${dateReturn} (${days} วัน)\n` +
+              `- งบประมาณ: ${budget}\n` +
+              `- พาหนะ: ${transport}\n` +
+              `- จำนวนนักท่องเที่ยว: ${travelers}\n` +
+              `- รีเควสเพิ่มเติม/สไตล์ที่ชอบ: ${interests}\n\n` +
+              `🎯 สิ่งที่ต้องคำนวณและแสดงผล:\n` +
+              `1. ช่วยลิสต์รายชื่อสถานที่ท่องเที่ยวสำคัญและแลนด์มาร์กเด็ดๆ "ทั้งหมด" ที่น่าสนใจในจังหวัด ${dest} ออกมาให้เลือกก่อน\n` +
+              `2. จัดแจงเขียนแผนการเดินทาง (Itinerary) รายวันแบบละเอียด (ระบุเวลา เช้า กลางวัน เย็น) โดยคำนวณการเดินทางเริ่มต้นจากจังหวัด ${origin} ไปยังจังหวัด ${dest} ให้เหมาะสมกับพาหนะ ${transport} และระยะเวลาทริป\n` +
+              `3. แนะนำที่พักที่ตรงกับงบประมาณ และร้านอาหารท้องถิ่นห้ามพลาดในจังหวัด ${dest}\n` +
+              `4. สรุปเคล็ดลับ สภาพอากาศช่วงนั้น และการเตรียมตัวเดินทาง`;
+
+  // คัดลอกข้อความเข้าคลิปบอร์ด
+  navigator.clipboard.writeText(msg).then(() => {
+    alert(`✨ ระบบเตรียมข้อมูลการเดินทางจาก [ ${origin} ] ไปยัง [ ${dest} ] สำเร็จ!\n\nระบบกำลังพาคุณไปที่หน้าเว็บ Gemini ให้คลิกในช่องพิมพ์แชทแล้วกด 'วาง (Ctrl+V)' ได้เลยครับ!`);
+    window.open("https://gemini.google.com", "_blank");
+  }).catch(err => {
+    console.error('คัดลอกล้มเหลว: ', err);
+  });
+}
+</script>
+
+</body>
+</html>
